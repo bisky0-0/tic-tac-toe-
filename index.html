@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tic tac toe</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC&family=Rubik+Vinyl&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/292ed01dd7.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header id="header">
+        <i class="fa-sharp fa-solid fa-xmark" id="close-icon"></i>
+        <i class="fa-solid fa-bars" id="nav-icon"></i>
+        <h1 id="h1">tic tac toe</h1>
+    </header>
+
+    <main id="game-container">
+        <nav id="nav">
+            <div class="level" id="easy">easy</div>
+            <div class="level" id="medium">medium</div>
+            <div class="level" id="hard">hard</div>
+            <div class="level" id="two-players">two players</div>
+        </nav>
+        <div id="board-container">
+            <div id="board">
+                <div class="board-areas left"></div>
+                <div class="board-areas"></div>
+                <div class="board-areas"></div>
+                <div class="board-areas left"></div>
+                <div class="board-areas"></div>
+                <div class="board-areas"></div>
+                <div class="board-areas last left"></div>
+                <div class="board-areas last"></div>
+                <div class="board-areas last"></div>
+            </div>
+        </div>
+
+        <div id="result-container">
+            <div class="result" id="x-scores">x scores <p class="score"></p>
+            </div>
+            <div class="result" id="o-scores">o scores <p class="score"></p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>built by <a href="https://github.com/bisky0-0">bisky kruger</a>
+            &copy;
+            <script>document.write(new Date().getFullYear());</script>
+        </p>
+    </footer>
+</body>
+<script src="script.js"></script>
+
+</html>
