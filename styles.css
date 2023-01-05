@@ -183,6 +183,11 @@ footer{
 
 
 @media (max-width: 1200px) {
+    #board-container{
+        position: relative;
+        width: 350px;
+        height: 350px;
+    }
     .result{
         width: calc(90% / 2);
         font-size: 1rem;
