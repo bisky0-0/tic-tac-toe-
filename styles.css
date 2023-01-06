@@ -4,7 +4,8 @@
     box-sizing: border-box;
 }
 @import url('https://fonts.googleapis.com/css2?family=Amatic+SC&family=Rubik+Vinyl&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap'); 
 body{
     display: grid;
     grid-template-columns: 1fr;
@@ -12,6 +13,7 @@ body{
     position: relative;
     background-color: #0e002a;
     min-height: 100vh;
+    font-family: 'Orbitron', sans-serif;
 }
 
 #header{
@@ -37,7 +39,7 @@ body{
 
 #close-icon{
     font-size: 3rem;
-    color: #f00;
+    color: #FD49A0;
     display: none;
 }
 
@@ -80,13 +82,13 @@ body{
     height: 100%;
     z-index: 10;
     width: 0;
-    background-color: #000;
+    background-color: #BBE7FE;
     font-size: 0;
     transition: 0.5s;
 }
 
 .level{
-    color: #fff;
+    color: #0e002a;
     justify-content: center;
     /* background-color: #1d1d1d; */
     width: 100%;
@@ -95,7 +97,8 @@ body{
 }
 
 .level:hover, .level:focus{
-    background-color: #1d1d1d;
+    background-color: #0e002a;
+    color: #fff;
 }
 
 #game-container{
@@ -110,8 +113,8 @@ body{
     border-radius: 20px;
     /* background-color: #BBE7FE; */
     margin-top: 50px;
-    box-shadow: 0.5px 0.5px 10px #BBE7FE,
-                -0.5px -0.5px 10px #BBE7FE;
+    box-shadow: 0.7px 0.7px 10px #BBE7FE,
+                -0.7px -0.7px 10px #BBE7FE;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -136,12 +139,18 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 6rem;
+}
+
+.x{
+    color: #FD49A0;
+    text-shadow: 0.7px 0.7px 5px #FD49A0,-0.7px -0.7px 5px #ff84bf ;
 }
 
 .o{
-    color: ;
+   color:  #B4FEE7;
+   text-shadow: 0.7px 0.7px 5px #BBE7FE,-0.7px -0.7px 5px #d2efff ;
 }
-
 .last{
     border-bottom: none;
 }
@@ -178,11 +187,14 @@ footer{
     font-size: 1rem;
     color: #fff;
     margin: 20px 0 20px 0;
+    font-family: 'Courgette', cursive;
 }
 
  a{
     text-decoration: none;
     color: #BBE7FE;
+    /* font-family: 'Sevillana', cursive; */
+
 }
 
 

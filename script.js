@@ -6,6 +6,8 @@ let closeBar = document.getElementById("close-icon")
 
 navIcon.addEventListener("click", function () {
     navBar.style.cssText = `width: 200px;
+    border: 1px solid #BBE7FE;
+    border-left: none;
     font-size: 1.2rem`;
     navIcon.style.display = "none";
     closeBar.style.display = "inline-block"
