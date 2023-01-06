@@ -16,6 +16,99 @@ body{
     font-family: 'Orbitron', sans-serif;
 }
 
+
+
+
+
+/*styling weapons card*/
+#first-window{
+    width: 100%;
+    height: 100%;
+    right: 0;
+    background-image:linear-gradient(to bottom right,#28002bd8,#0a001eec );
+    z-index: 100;
+    position: absolute;
+    /* display: none; */
+    transition: 1.5s;
+}
+
+#weapons{
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background-color: #0e002a;
+    top: calc((100vh - 400px) / 2);
+    left: calc((100% - 400px) / 2);
+    z-index: 1000;
+    border-radius: 40px;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: space-around;
+    transition: 1s;
+    /* display: none; */
+    animation: weaponsShadow 1s linear 0s infinite alternate both;
+}
+
+@keyframes weaponsShadow {
+    0%{
+        box-shadow: 1px 1px 5px #f4e2ff;
+    }
+
+    25%{
+        box-shadow: -0.7px -0.7px 10px #ff82f0;
+    }
+
+    50%{
+        box-shadow: -1px -1px 20px #84d6ff;
+    }
+
+    100%{
+        box-shadow: 2px 2px 30px #97d4ff;
+    }
+}
+
+#weapons-container{
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: space-around;
+    height: 50%;
+    width: 100%;
+    
+}
+
+.weapon{
+    width: calc(90% / 2);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.weapon:hover{
+    text-shadow: 10px 10px 80px #ffffff;
+}
+
+#weapons-container > .x, #weapons-container > .o{
+    font-size: 6rem;
+}
+
+#weapons > h2{
+    font-family: 'Rubik Vinyl', cursive;
+    word-spacing: 5px;
+    font-size: 2rem;
+    color: #fff;
+    animation: shadow 1s linear 0s infinite alternate both;
+}
+
+
+
+
+
+
 #header{
     position: sticky;
     grid-area: 1 / 1/ span 1/ span 2;
@@ -34,7 +127,7 @@ body{
     left: 10px;
     font-size: 3rem;
     cursor: pointer;
-    transition: 0.4;
+    transition: 1s;
 }
 
 #close-icon{
@@ -84,7 +177,7 @@ body{
     width: 0;
     background-color: #BBE7FE;
     font-size: 0;
-    transition: 0.5s;
+    transition: 1.5s;
 }
 
 .level{
