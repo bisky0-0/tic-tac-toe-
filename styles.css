@@ -10,7 +10,7 @@ body{
     grid-template-columns: 1fr;
     grid-template-rows: 0.7fr 6fr 0.3fr;
     position: relative;
-    background-color: #1d1d1d;
+    background-color: #0e002a;
     min-height: 100vh;
 }
 
@@ -136,6 +136,10 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.o{
+    color: ;
 }
 
 .last{
