@@ -201,8 +201,8 @@ footer{
 @media (max-width: 1200px) {
     #board-container{
         position: relative;
-        width: 350px;
-        height: 350px;
+        width: 340px;
+        height: 340px;
     }
     .result{
         width: calc(90% / 2);
@@ -210,5 +210,8 @@ footer{
         padding: 10px;
         flex-flow: column;
         justify-content: space-between;
+    }
+   #h1{
+        font-size: 2.6rem;
     }
 }

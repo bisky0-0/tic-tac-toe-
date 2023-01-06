@@ -5,7 +5,7 @@ let navBar = document.getElementById("nav");
 let closeBar = document.getElementById("close-icon")
 
 navIcon.addEventListener("click", function () {
-    navBar.style.cssText = `width: 200px;
+    navBar.style.cssText = `width: 100%;
     border: 1px solid #BBE7FE;
     border-left: none;
     font-size: 1.2rem`;
