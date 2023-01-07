@@ -27,9 +27,12 @@ body{
     right: 0;
     background-image:linear-gradient(to bottom right,#28002bd8,#0a001eec );
     z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: absolute;
     /* display: none; */
-    transition: 1.5s;
+    transition: 0.5s;
 }
 
 #weapons{
@@ -37,8 +40,6 @@ body{
     width: 400px;
     height: 400px;
     background-color: #0e002a;
-    top: calc((100vh - 400px) / 2);
-    left: calc((100% - 400px) / 2);
     z-index: 1000;
     border-radius: 40px;
     display: flex;
@@ -177,7 +178,7 @@ body{
     width: 0;
     background-color: #BBE7FE;
     font-size: 0;
-    transition: 1.5s;
+    transition: 0.5s;
 }
 
 .level{
@@ -292,6 +293,15 @@ footer{
 
 
 @media (max-width: 1200px) {
+
+    #weapons{
+        width: 340px;
+        height: 340px;
+    }
+
+    #weapons > h2{
+        font-size: 1.5rem;
+    }
     #board-container{
         position: relative;
         width: 340px;

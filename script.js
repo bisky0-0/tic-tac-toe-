@@ -22,37 +22,78 @@ function closeNav() {
 
 
 
-//styling weapons card 
+//styling weapons card and choosing weapon
 let startWindow = document.getElementById("first-window");
 let weaponsCard = document.getElementById("weapons");
 let weapons = document.getElementsByClassName("weapon");
-let userWeapon;
+let levels = document.getElementsByClassName("level");
+let choosenLevel = "easy";
+let boardEreas = document.getElementsByClassName("board-areas");
 
+
+function Player(name, scores) {
+    scores = 0;
+    return { name, scores }
+}
+
+/*I put all logic in the weapon function because the immediatly invoked function
+ake the undefined value of userWeapon before adding event to weapons */
 for (const weapon of weapons) {
     weapon.addEventListener('click', function () {
-        userWeapon = weapon.id;
-        console.log(userWeapon)
         weaponsCard.style.display = "none"
         startWindow.style.cssText = ` width: 0`;
         navBar.click = openBar();
-    })
-}
+        let userWeapon = weapon.id;
 
-//levels 
-let levels = document.getElementsByClassName("level");
-let choosenLevel = "easy";
 
-for (const level of levels) {
-    level.addEventListener('click', function () {
-        if (level.id == "chooseWeapon") {
-            startWindow.style.cssText = `width: 100%`;
-            weaponsCard.style.display = "flex"
+        //level choosing 
+        for (const level of levels) {
+            level.addEventListener('click', function () {
+                if (level.id == "chooseWeapon") {
+                    startWindow.style.cssText = `width: 100%`;
+                    weaponsCard.style.display = "flex"
+                }
+
+                else {
+                    choosenLevel = level.id;
+                }
+                navBar.click = closeNav();
+            })
         }
 
-        else {
-            choosenLevel = level.id;
-        }
-        navBar.click = closeNav();
+
+        //after choosing level I start putting logic
+        (function game() {
+            let userPlayer = Player(userWeapon, 0);
+            let PlayerAI;
+            if (userPlayer.name == "x") {
+                PlayerAI = Player("o", 0);
+            }
+            else if (userPlayer.name !== "x") {
+                PlayerAI = Player("x", 0)
+            }
+
+            let areasArray = []
+            for (const area of boardEreas) {
+                areasArray.push(area);
+                if (area.textContent !== "x" || area.textContent !== "o")
+                    area.addEventListener('click', function () {
+                        areasArray.splice(areasArray.indexOf(area), 1);
+                        area.classList.add(userPlayer.name);
+                        area.textContent = userPlayer.name;
+
+
+
+                        let random = Math.floor(Math.random() * areasArray.length);
+                        console.log(areasArray.length)
+                        boardEreas[random].classList.add(PlayerAI.name);
+                        boardEreas[random].textContent = PlayerAI.name;
+                        console.log(random)
+                        areasArray.splice(areasArray.indexOf(random), 1);
+                    })
+
+            }
+        })()
     })
 }
 
