@@ -17,15 +17,13 @@ body{
 }
 
 
-
-
-
 /*styling weapons card*/
-#first-window{
+.bluer{
     width: 100%;
     height: 100%;
     right: 0;
-    background-image:linear-gradient(to bottom right,#28002bd8,#0a001eec );
+    background-image:linear-gradient(to bottom right,#28002bf3,#0a001ef5 );
+    filter: blur(1);
     z-index: 100;
     display: flex;
     align-items: center;
@@ -50,7 +48,7 @@ body{
     /* display: none; */
     animation: weaponsShadow 1s linear 0s infinite alternate both;
 }
-
+/* 
 @keyframes weaponsShadow {
     0%{
         box-shadow: 1px 1px 5px #f4e2ff;
@@ -67,7 +65,7 @@ body{
     100%{
         box-shadow: 2px 2px 30px #97d4ff;
     }
-}
+} */
 
 #weapons-container{
     display: flex;
@@ -145,7 +143,7 @@ body{
     word-spacing: 4px; */
     animation: shadow 1s linear 0s infinite alternate both;
 }
-
+/* 
 @keyframes shadow {
     0%{
         text-shadow: none;
@@ -160,7 +158,7 @@ body{
         text-shadow: 1px 1px 20px rgb(251, 0, 255),
     -1px -1px 20px rgb(255, 0, 234);
     }
-}
+} */
 
 #nav, .level, #game-container{
     display: flex;
@@ -237,11 +235,13 @@ body{
 }
 
 .x{
+    transition: 1s;
     color: #FD49A0;
     text-shadow: 0.7px 0.7px 5px #FD49A0,-0.7px -0.7px 5px #ff84bf ;
 }
 
 .o{
+    transition: 1s;
    color:  #B4FEE7;
    text-shadow: 0.7px 0.7px 5px #BBE7FE,-0.7px -0.7px 5px #d2efff ;
 }
@@ -289,6 +289,36 @@ footer{
     color: #BBE7FE;
     /* font-family: 'Sevillana', cursive; */
 
+}
+
+
+#result-window{
+    transition: 3s;
+    width: 0;
+}
+#result-card{
+    transition: 5s;
+    font-size: 0;
+    position: absolute;
+    width: 0;
+    height: 0;
+    background-color: #c5a9ff;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    flex-flow: column;
+    color: #fff;
+    justify-content: space-around;
+}
+
+#restart{
+    background-color: #0e002a;
+    border: none;
+    width: 0;
+    height: 0;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 0;
 }
 
 

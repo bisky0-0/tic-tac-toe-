@@ -22,7 +22,7 @@
         <h1 id="h1">tic tac toe</h1>
     </header>
 
-    <div id="first-window">
+    <div id="first-window" class="bluer">
         <div id="weapons">
             <h2>choose your weapon</h2>
             <div id="weapons-container">
@@ -41,15 +41,15 @@
         </nav>
         <div id="board-container">
             <div id="board">
-                <div class="board-areas left "></div>
-                <div class="board-areas "></div>
-                <div class="board-areas"></div>
-                <div class="board-areas left"></div>
-                <div class="board-areas"></div>
-                <div class="board-areas"></div>
-                <div class="board-areas last left"></div>
-                <div class="board-areas last"></div>
-                <div class="board-areas last"></div>
+                <div class="board-areas left col1 row1 xrow1"></div>
+                <div class="board-areas col2 row1"></div>
+                <div class="board-areas col3 row1 xrow2"></div>
+                <div class="board-areas left col1 row2"></div>
+                <div class="board-areas col2 row2 xrow1 xrow2"></div>
+                <div class="board-areas col3 row2"></div>
+                <div class="board-areas last left col1 row3 xrow2"></div>
+                <div class="board-areas last col2 row3"></div>
+                <div class="board-areas last col3 row3 xrow1"></div>
             </div>
         </div>
 
@@ -60,6 +60,14 @@
             </div>
         </div>
     </main>
+
+    <div id="result-window" class="bluer">
+        <div id="result-card">
+            <p>the winner is</p>
+            <p id="winner"></p>
+            <button id="restart">new game</button>
+        </div>
+    </div>
 
     <footer>
         <p>built by <a href="https://github.com/bisky0-0">bisky kruger</a>
