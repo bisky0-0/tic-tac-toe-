@@ -19,7 +19,7 @@ body{
 
 /*styling weapons card*/
 .bluer{
-    width: 100%;
+        width: 100%;
     height: 100%;
     right: 0;
     background-image:linear-gradient(to bottom right,#28002bf3,#0a001ef5 );
@@ -30,10 +30,13 @@ body{
     justify-content: center;
     position: absolute;
     /* display: none; */
-    transition: 0.5s;
+    transition: 2s;
+    animation-delay: 1s;
 }
 
 #weapons{
+    container-type: inline-size;
+
     position: absolute;
     width: 400px;
     height: 400px;
@@ -44,11 +47,11 @@ body{
     flex-flow: column;
     align-items: center;
     justify-content: space-around;
-    transition: 1s;
+    transition: 0.05s;
     /* display: none; */
     animation: weaponsShadow 1s linear 0s infinite alternate both;
 }
-/* 
+
 @keyframes weaponsShadow {
     0%{
         box-shadow: 1px 1px 5px #f4e2ff;
@@ -65,7 +68,7 @@ body{
     100%{
         box-shadow: 2px 2px 30px #97d4ff;
     }
-} */
+}
 
 #weapons-container{
     display: flex;
@@ -74,6 +77,7 @@ body{
     justify-content: space-around;
     height: 50%;
     width: 100%;
+    transition: 0.03s;
     
 }
 
@@ -101,9 +105,15 @@ body{
     font-size: 2rem;
     color: #fff;
     animation: shadow 1s linear 0s infinite alternate both;
+    transition: .01s;
+
 }
 
-
+@container(width: 0){
+    #weapons > h2, #weapons > p, #weapons-container> .x,#weapons-container > .o{
+        font-size: 0rem;
+    }
+}
 
 
 
@@ -143,7 +153,7 @@ body{
     word-spacing: 4px; */
     animation: shadow 1s linear 0s infinite alternate both;
 }
-/* 
+
 @keyframes shadow {
     0%{
         text-shadow: none;
@@ -158,7 +168,7 @@ body{
         text-shadow: 1px 1px 20px rgb(251, 0, 255),
     -1px -1px 20px rgb(255, 0, 234);
     }
-} */
+}
 
 #nav, .level, #game-container{
     display: flex;
@@ -293,31 +303,46 @@ footer{
 
 
 #result-window{
-    transition: 3s;
+    background-color: #fdfbff17;
+    transition: 0.01ms;
     width: 0;
+    height: 0;
+    position: absolute;
+    inset: 0 50% 0 0;
 }
 #result-card{
-    transition: 5s;
+    transition: 1s;
     font-size: 0;
     position: absolute;
     width: 0;
     height: 0;
-    background-color: #c5a9ff;
+    background-color: #e1e1e11b;
     border-radius: 10px;
     display: flex;
     align-items: center;
     flex-flow: column;
     color: #fff;
     justify-content: space-around;
+    animation-fill-mode: forwards;
 }
 
 #restart{
+    transition: 1.2s;
     background-color: #0e002a;
     border: none;
     width: 0;
     height: 0;
     border-radius: 5px;
     color: #fff;
+    font-size: 0;
+    cursor: pointer;
+}
+#restart:hover{
+    background-color: #b047d0c3;
+}
+
+#winner{
+    transition: 1,2s;
     font-size: 0;
 }
 
@@ -329,9 +354,9 @@ footer{
         height: 340px;
     }
 
-    #weapons > h2{
+    /* #weapons > h2{
         font-size: 1.5rem;
-    }
+    } */
     #board-container{
         position: relative;
         width: 340px;

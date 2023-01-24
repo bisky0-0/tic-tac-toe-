@@ -26,30 +26,30 @@
         <div id="weapons">
             <h2>choose your weapon</h2>
             <div id="weapons-container">
-                <div class="weapon x" id="x">X</div>
-                <div class="weapon o" id="o">O</div>
+                <div class="weapon x" data-type="x">X</div>
+                <div class="weapon o" data-type="o">O</div>
             </div>
         </div>
     </div>
 
     <main id="game-container">
         <nav id="nav">
-            <div class="level" id="easy" value="easy">easy</div>
-            <div class="level" id="hard" value="hard">hard</div>
-            <div class="level" id="two-players" value="twoplayers">two players</div>
-            <div class="level" id="chooseWeapon" value="chooseWeapon">choose you weapon</div>
+            <div class="level" data-type="easy">easy</div>
+            <div class="level" data-type="hard">hard</div>
+            <div class="level" data-type="twoplayers">two players</div>
+            <div class="level" data-type="chooseWeapon">choose you weapon</div>
         </nav>
         <div id="board-container">
             <div id="board">
-                <div class="board-areas left col1 row1 xrow1"></div>
-                <div class="board-areas col2 row1"></div>
-                <div class="board-areas col3 row1 xrow2"></div>
-                <div class="board-areas left col1 row2"></div>
-                <div class="board-areas col2 row2 xrow1 xrow2"></div>
-                <div class="board-areas col3 row2"></div>
-                <div class="board-areas last left col1 row3 xrow2"></div>
-                <div class="board-areas last col2 row3"></div>
-                <div class="board-areas last col3 row3 xrow1"></div>
+                <div class="board-areas left "></div>
+                <div class="board-areas"></div>
+                <div class="board-areas"></div>
+                <div class="board-areas left"></div>
+                <div class="board-areas"></div>
+                <div class="board-areas"></div>
+                <div class="board-areas left last"></div>
+                <div class="board-areas last"></div>
+                <div class="board-areas last"></div>
             </div>
         </div>
 
@@ -59,15 +59,16 @@
             <div class="result" id="o-scores">o scores <p class="score"></p>
             </div>
         </div>
+        <div id="result-window" class="bluer">
+            <div id="result-card">
+                <p id="card-phrase">the winner is</p>
+                <p id="winner"></p>
+                <button id="restart">new game</button>
+            </div>
+        </div>
     </main>
 
-    <div id="result-window" class="bluer">
-        <div id="result-card">
-            <p>the winner is</p>
-            <p id="winner"></p>
-            <button id="restart">new game</button>
-        </div>
-    </div>
+
 
     <footer>
         <p>built by <a href="https://github.com/bisky0-0">bisky kruger</a>
@@ -75,7 +76,9 @@
             <script>document.write(new Date().getFullYear());</script>
         </p>
     </footer>
+
 </body>
-<script src="script.js"></script>
+<script src="modifiedScript.js"></script>
+
 
 </html>
