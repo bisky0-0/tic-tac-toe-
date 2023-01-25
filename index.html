@@ -32,40 +32,37 @@
         </div>
     </div>
 
-    <main id="game-container">
-        <nav id="nav">
-            <div class="level" data-type="easy">easy</div>
-            <div class="level" data-type="hard">hard</div>
-            <div class="level" data-type="twoplayers">two players</div>
-            <div class="level" data-type="chooseWeapon">choose you weapon</div>
-        </nav>
-        <div id="board-container">
-            <div id="board">
-                <div class="board-areas left "></div>
-                <div class="board-areas"></div>
-                <div class="board-areas"></div>
-                <div class="board-areas left"></div>
-                <div class="board-areas"></div>
-                <div class="board-areas"></div>
-                <div class="board-areas left last"></div>
-                <div class="board-areas last"></div>
-                <div class="board-areas last"></div>
+    <main>
+        <div id="game-container">
+            <nav id="nav">
+                <div class="level" data-type="easy">easy</div>
+                <div class="level" data-type="hard">hard</div>
+                <div class="level" data-type="twoplayers">two players</div>
+                <div class="level" data-type="chooseWeapon">choose you weapon</div>
+            </nav>
+            <div class="result"><span class="x larger">x</span>
+                <p id="x-scores">0</p>
             </div>
-        </div>
+            <div id="board-container">
+                <div id="board">
+                    <div class="board-areas left "></div>
+                    <div class="board-areas"></div>
+                    <div class="board-areas"></div>
+                    <div class="board-areas left"></div>
+                    <div class="board-areas"></div>
+                    <div class="board-areas"></div>
+                    <div class="board-areas left last"></div>
+                    <div class="board-areas last"></div>
+                    <div class="board-areas last"></div>
+                </div>
+            </div>
 
-        <div id="result-container">
-            <div class="result" id="x-scores">x scores <p class="score"></p>
-            </div>
-            <div class="result" id="o-scores">o scores <p class="score"></p>
-            </div>
-        </div>
-        <div id="result-window" class="bluer">
-            <div id="result-card">
-                <p id="card-phrase">the winner is</p>
-                <p id="winner"></p>
-                <button id="restart">new game</button>
+
+            <div class="result"><span class="o larger">o</span>
+                <p id="o-scores">0</p>
             </div>
         </div>
+        <button id="restart">new game</button>
     </main>
 
 
