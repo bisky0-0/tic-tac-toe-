@@ -261,7 +261,6 @@ main{
 .result{
     width: calc(20% / 2);
     height: 400px;
-    border: 1px solid #D3B5E5;
     border-radius: 10px;
     display: flex;
     flex-flow: column;

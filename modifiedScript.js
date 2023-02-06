@@ -150,9 +150,10 @@ function game() {
                     if (stopFun === false) {
                         let randomNum = random(areasArray.length);
                         if (areasArray.length > 0) {
+                            console.log(randomNum)
                             areasArray[randomNum].textContent = bot.weapon;
                             areasArray[randomNum].classList.add(bot.weapon);
-                            chickedAreas[randomNum + (chickedAreas.length - areasArray.length)] = BoardArea(randomNum + (chickedAreas.length - areasArray.length), bot.weapon, true)
+                            chickedAreas[randomNum - (areasArray.length - (2 * i))] = BoardArea(randomNum - (areasArray.length - (2 * i)), bot.weapon, true)
                             areasArray.splice(randomNum, 1)
                             chickForWinner()
                         }
@@ -255,11 +256,7 @@ function game() {
 
                 }
             }
-
-
         })
-
-
     }
 }
 
@@ -311,7 +308,6 @@ function chickForWinner() {
                         return element.style.textContent = `text-shadow: 0.5px 0.5px 10px #FD49A0,-0.7px -0.7px 5px #ff84bf`
                     }
                 })
-                resultWindow.style.width = '100%'
                 stopFun = true
             }
         }
