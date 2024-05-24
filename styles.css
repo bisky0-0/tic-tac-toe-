@@ -1,66 +1,59 @@
-* {
+*{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
-
-body {
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC&family=Rubik+Vinyl&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap'); 
+body{
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 0.7fr 6fr 0.3fr;
-    position: relative;
-    background-color: #0e002a;
-    min-height: 100vh;
+	@@ -16,13 +14,11 @@ body{
     font-family: 'Orbitron', sans-serif;
 }
 
-.bluer {
+
+.bluer{
     width: 100%;
     height: 100%;
     right: 0;
-    background-image: linear-gradient(to bottom right, #28002bf3, #0a001ef5);
+    background-image:linear-gradient(to bottom right,#28002bf3,#0a001ef5 );
+    filter: blur(1);
     z-index: 100;
     display: flex;
     align-items: center;
-    justify-content: center;
-    position: absolute;
+	@@ -31,7 +27,7 @@ body{
     transition: 0.01s;
 }
 
-#weapons {
+#weapons{
     position: absolute;
     width: 400px;
     height: 400px;
-    background-color: #0e002a;
-    z-index: 1000;
-    border-radius: 40px;
-    display: flex;
-    flex-flow: column;
-    align-items: center;
-    justify-content: space-around;
-    transition: 0.04s;
-    animation: weaponsShadow 1s linear 0s infinite alternate both;
+	@@ -47,35 +43,34 @@ body{
 }
 
 @keyframes weaponsShadow {
-    0% {
+    0%{
         box-shadow: 1px 1px 5px #f4e2ff;
     }
 
-    25% {
+    25%{
         box-shadow: -0.7px -0.7px 10px #ff82f0;
     }
 
-    50% {
+    50%{
         box-shadow: -1px -1px 20px #84d6ff;
     }
 
-    100% {
+    100%{
         box-shadow: 2px 2px 30px #97d4ff;
     }
 }
 
-#weapons-container {
+#weapons-container{
     display: flex;
     flex-flow: row;
     align-items: center;
@@ -68,49 +61,49 @@ body {
     height: 50%;
     width: 100%;
     transition: 0.09s;
+
 }
 
-.weapon {
+.weapon{
     width: calc(90% / 2);
     height: 100%;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 10px;
-    cursor: pointer;
+	@@ -86,26 +81,24 @@ body{
     transition: 1.5s;
 }
 
-.weapon:hover {
+.weapon:hover{
     text-shadow: 10px 10px 80px #ffffff;
 }
 
-#weapons-container > .x, #weapons-container > .o {
+#weapons-container > .x, #weapons-container > .o{
     font-size: 6rem;
 }
 
-#weapons > h2 {
+#weapons > h2{
     font-family: 'Rubik Vinyl', cursive;
     word-spacing: 5px;
     font-size: 2rem;
     color: #fff;
     animation: shadow 1s linear 0s infinite alternate both;
     transition: .01s;
+
 }
 
-#header {
+
+#header{
     position: sticky;
     grid-area: 1 / 1/ span 1/ span 2;
     width: 100%;
-    background-color: #D3B5E5;
-    color: #fff;
+	@@ -114,54 +107,52 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
+    /* font-family: 'Amatic SC', cursive; */
     font-family: 'Rubik Vinyl', cursive;
 }
 
-#nav-icon, #close-icon {
+#nav-icon, #close-icon{
     position: absolute;
     left: 10px;
     font-size: 3rem;
@@ -118,53 +111,50 @@ body {
     transition: 1s;
 }
 
-#close-icon {
+#close-icon{
     font-size: 3rem;
     color: #FD49A0;
     display: none;
 }
 
-#h1 {
+
+#h1{
     font-size: 3rem;
     animation: shadow 1s linear 0s infinite alternate both;
 }
 
 @keyframes shadow {
-    0% {
+    0%{
         text-shadow: none;
     }
 
-    50% {
+    50%{
         text-shadow: 1px 1px 10px rgb(254, 204, 255),
-        -1px -1px 10px rgb(255, 206, 251);
+    -1px -1px 10px rgb(255, 206, 251);
     }
 
-    100% {
+    100%{
         text-shadow: 1px 1px 20px rgb(251, 0, 255),
-        -1px -1px 20px rgb(255, 0, 234);
+    -1px -1px 20px rgb(255, 0, 234);
     }
 }
 
-#nav, .level, #game-container, main {
+#nav, .level, #game-container, main{
     display: flex;
     flex-flow: column;
     align-items: center;
     justify-content: space-around;
 }
 
-#nav {
+#nav{
     position: absolute;
     top: 0;
     left: 0;
-    height: 100%;
-    z-index: 10;
-    width: 0;
-    background-color: #BBE7FE;
-    font-size: 0;
+	@@ -173,32 +164,32 @@ body{
     transition: 0.5s;
 }
 
-.level {
+.level{
     color: #0e002a;
     justify-content: center;
     width: 100%;
@@ -172,95 +162,173 @@ body {
     cursor: pointer;
 }
 
-.level:hover, .level:focus {
+.level:hover, .level:focus{
     background-color: #0e002a;
     color: #fff;
 }
 
-main {
+main{
     grid-area: 2/ 1/ span 1/ span 1;
     position: relative;
     padding-bottom: 20px;
 }
 
-#game-container {
+#game-container{
     height: 90%;
     width: 100%;
     flex-flow: row;
 }
 
-#board-container {
+#board-container{
     position: relative;
     width: 400px;
     height: 400px;
-    border-radius: 20px;
-    box-shadow: 0.7px 0.7px 10px #BBE7FE,
-                -0.7px -0.7px 10px #BBE7FE;
-    display: flex;
-    align-items: center;
+	@@ -210,148 +201,66 @@ main{
     justify-content: center;
 }
 
-#board {
-    width: 380px;
-    height: 380px;
-    border-radius: 20px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-}
 
-.board-areas {
+#board{
+    width: 90%;
+    height: 90%;
+    border-radius: 10px;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Amatic SC', cursive;
-    font-size: 4rem;
-    background-color: #D3B5E5;
-    color: #0e002a;
+    flex-flow: row wrap;
+    transform: rotate(-2deg);
 }
 
-.left {
-    border-right: 3px solid #BBE7FE;
-}
-
-.last {
-    border-bottom: 3px solid #BBE7FE;
-}
-
-.result > span {
-    font-size: 3rem;
-}
-
-.result > p {
-    font-size: 3rem;
-}
-
-#restart {
-    position: absolute;
-    bottom: 0;
-    font-size: 1.5rem;
-    padding: 10px;
-    background-color: #ff00a1;
-    color: #fff;
+.board-areas{
+    width:calc(100% / 3);
+    height: calc(100%/ 3);
+    border-bottom: 3px solid #fff;
+    border-left: 3px solid #fff;
     cursor: pointer;
-    border: none;
-    border-radius: 5px;
-    transition: 0.3s;
-}
-
-#restart:hover {
-    background-color: #bb007a;
-}
-
-footer {
-    grid-area: 3/1/ span 1/ span 2;
-    background-color: #D3B5E5;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 6rem;
 }
 
-footer a {
-    color: #0e002a;
+
+.x{
+    transition: 1s;
+    color: #FD49A0;
+    text-shadow: 0.7px 0.7px 5px #FD49A0,-0.7px -0.7px 70px #FD49A0 ;
+}
+
+.o{
+    transition: 1s;
+   color:  #B4FEE7;
+   text-shadow: 0.7px 0.7px 5px #84d6ff,-0.7px -0.7px 70px #84d6ff ;
+}
+
+.larger{
+    font-size: 5rem;
+    margin-bottom: 150px;
+}
+.last{
+    border-bottom: none;
+}
+
+.left{
+    border-left: none;
+}
+
+
+.result{
+    width: calc(20% / 2);
+    height: 400px;
+    border-radius: 10px;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 2rem;
+    color: #fff;
+}
+
+
+#restart{
+    transition: 1.2s;
+    background-color: #D3B5E5;
+    border: none;
+    width: 200px;
+    height: 50px;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+#restart:hover{
+    background-color: #b047d0c3;
+}
+
+footer{
+    grid-area: 3 / 1 / span 1/ span 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    color: #fff;
+    margin: 20px 0 20px 0;
+    font-family: 'Courgette', cursive;
+}
+
+ a{
+    text-decoration: none;
+    color: #BBE7FE;
+}
+
+
+@keyframes anim-popoutin {
+    0% {
+        font-size: 4rem;
+        }
+    25% {
+        font-size: 5rem;
+    }
+    50% {
+        font-size: 7rem;
+    }
+    100% {
+      font-size: 8rem;
+    }
+  }
+
+
+@media (max-width: 1200px) {
+    #weapons{
+        width: 340px;
+        height: 340px;
+    }
+
+    #weapons > h2{
+        font-size: 1.5rem;
+    }
+
+    #game-container{
+        flex-flow: column;
+    }
+    #board-container{
+        position: relative;
+        width: 340px;
+        height: 340px;
+    }
+    .result{
+        flex-flow: row;
+        width: 80%;
+        height: 70px;
+        font-size: 1.3rem;
+        padding: 10px;
+    }
+
+    .larger{
+    font-size: 2rem;
+    margin: 0 70% 0 5%;
+    }
+
+   #h1{
+        font-size: 2.6rem;
+    }
 }
