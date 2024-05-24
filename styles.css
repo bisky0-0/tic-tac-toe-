@@ -10,7 +10,9 @@ body{
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 0.7fr 6fr 0.3fr;
-	@@ -16,13 +14,11 @@ body{
+    position: relative;
+    background-color: #0e002a;
+    min-height: 100vh;
     font-family: 'Orbitron', sans-serif;
 }
 
@@ -24,7 +26,8 @@ body{
     z-index: 100;
     display: flex;
     align-items: center;
-	@@ -31,7 +27,7 @@ body{
+    justify-content: center;
+    position: absolute;
     transition: 0.01s;
 }
 
@@ -32,7 +35,15 @@ body{
     position: absolute;
     width: 400px;
     height: 400px;
-	@@ -47,35 +43,34 @@ body{
+    background-color: #0e002a;
+    z-index: 1000;
+    border-radius: 40px;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: space-around;
+    transition: 0.04s;
+    animation: weaponsShadow 1s linear 0s infinite alternate both;
 }
 
 @keyframes weaponsShadow {
@@ -61,14 +72,17 @@ body{
     height: 50%;
     width: 100%;
     transition: 0.09s;
-
+    
 }
 
 .weapon{
     width: calc(90% / 2);
     height: 100%;
     display: flex;
-	@@ -86,26 +81,24 @@ body{
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    cursor: pointer;
     transition: 1.5s;
 }
 
@@ -95,7 +109,8 @@ body{
     position: sticky;
     grid-area: 1 / 1/ span 1/ span 2;
     width: 100%;
-	@@ -114,54 +107,52 @@ body{
+    background-color: #D3B5E5;
+    color: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -150,7 +165,11 @@ body{
     position: absolute;
     top: 0;
     left: 0;
-	@@ -173,32 +164,32 @@ body{
+    height: 100%;
+    z-index: 10;
+    width: 0;
+    background-color: #BBE7FE;
+    font-size: 0;
     transition: 0.5s;
 }
 
@@ -183,7 +202,11 @@ main{
     position: relative;
     width: 400px;
     height: 400px;
-	@@ -210,148 +201,66 @@ main{
+    border-radius: 20px;
+    box-shadow: 0.7px 0.7px 10px #BBE7FE,
+                -0.7px -0.7px 10px #BBE7FE;
+    display: flex;
+    align-items: center;
     justify-content: center;
 }
 
