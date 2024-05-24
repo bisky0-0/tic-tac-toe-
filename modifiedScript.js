@@ -78,12 +78,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
         handleCellPlayed(clickedCell, clickedCellIndex);
         handleResultValidation();
+
+        if (gameActive && gameMode !== 'twoplayers') {
+            if (currentPlayer === 'O') {
+                handleComputerMove();
+            }
+        }
     }
 
     function handleRestartGame() {
         gameBoard = ['', '', '', '', '', '', '', '', ''];
         gameActive = true;
         currentPlayer = 'X';
+        boardContainer.classList.remove('o-turn');
+        boardContainer.classList.add('x-turn');
 
         boardAreas.forEach(cell => cell.textContent = '');
     }
@@ -108,6 +116,102 @@ document.addEventListener('DOMContentLoaded', () => {
         nav.style.width = '0';
         navIcon.style.display = 'block';
         closeIcon.style.display = 'none';
+    }
+
+    function handleComputerMove() {
+        if (gameMode === 'easy') {
+            makeRandomMove();
+        } else if (gameMode === 'hard') {
+            makeBestMove();
+        }
+        handleResultValidation();
+    }
+
+    function makeRandomMove() {
+        let availableCells = gameBoard.map((cell, index) => cell === '' ? index : null).filter(index => index !== null);
+        if (availableCells.length > 0) {
+            let randomIndex = availableCells[Math.floor(Math.random() * availableCells.length)];
+            handleCellPlayed(boardAreas[randomIndex], randomIndex);
+        }
+    }
+
+    function makeBestMove() {
+        let bestMove = minimax(gameBoard, 'O').index;
+        handleCellPlayed(boardAreas[bestMove], bestMove);
+    }
+
+    function minimax(newBoard, player) {
+        let availableCells = newBoard.map((cell, index) => cell === '' ? index : null).filter(index => index !== null);
+        let winner = checkWin(newBoard);
+
+        if (winner === 'X') {
+            return { score: -10 };
+        } else if (winner === 'O') {
+            return { score: 10 };
+        } else if (availableCells.length === 0) {
+            return { score: 0 };
+        }
+
+        let moves = [];
+        for (let i = 0; i < availableCells.length; i++) {
+            let move = {};
+            move.index = availableCells[i];
+            newBoard[availableCells[i]] = player;
+
+            if (player === 'O') {
+                let result = minimax(newBoard, 'X');
+                move.score = result.score;
+            } else {
+                let result = minimax(newBoard, 'O');
+                move.score = result.score;
+            }
+
+            newBoard[availableCells[i]] = '';
+            moves.push(move);
+        }
+
+        let bestMove;
+        if (player === 'O') {
+            let bestScore = -10000;
+            for (let i = 0; i < moves.length; i++) {
+                if (moves[i].score > bestScore) {
+                    bestScore = moves[i].score;
+                    bestMove = moves[i];
+                }
+            }
+        } else {
+            let bestScore = 10000;
+            for (let i = 0; i < moves.length; i++) {
+                if (moves[i].score < bestScore) {
+                    bestScore = moves[i].score;
+                    bestMove = moves[i];
+                }
+            }
+        }
+
+        return bestMove;
+    }
+
+    function checkWin(board = gameBoard) {
+        const winningConditions = [
+            [0, 1, 2],
+            [3, 4, 5],
+            [6, 7, 8],
+            [0, 3, 6],
+            [1, 4, 7],
+            [2, 5, 8],
+            [0, 4, 8],
+            [2, 4, 6]
+        ];
+
+        for (let i = 0; i < winningConditions.length; i++) {
+            const [a, b, c] = winningConditions[i];
+            if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+                return board[a];
+            }
+        }
+
+        return board.includes('') ? null : 'Draw';
     }
 
     navIcon.addEventListener('click', () => {
