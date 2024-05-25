@@ -2,7 +2,7 @@ let weaponsCard = document.getElementById("weapons");
 let weaponsWindow = document.getElementById("first-window");
 let weapons = document.getElementsByClassName("weapon");
 let openIcon = document.getElementById("nav-icon");
-let closeIcon = document.getElementById("close-icon")
+let closeIcon = document.getElementById("close-icon");
 let navBar = document.getElementById("nav");
 let levels = document.getElementsByClassName("level");
 let boardAreas = document.getElementsByClassName("board-areas");
@@ -16,11 +16,11 @@ let restart = document.getElementById("restart");
 
 // Factory function for USER and the BOT and board areas
 function Player(name, weapon, score) {
-    return { name, weapon, score }
+    return { name, weapon, score };
 }
 
 function BoardArea(number, content, chicked) {
-    return { number, content, chicked }
+    return { number, content, chicked };
 }
 
 // Choosing a weapon
@@ -28,11 +28,11 @@ for (const weapon of weapons) {
     weapon.addEventListener('click', function () {
         weaponsWindow.style.cssText = `display: none`;
         openNav();
-        console.log(weapon.dataset.type)
+        console.log(weapon.dataset.type);
         let choosenWeapon = weapon.dataset.type;
         user = Player(choosenWeapon, choosenWeapon, 0);
         bot = Player(user.weapon === "x" ? "o" : "x", user.weapon === "x" ? "o" : "x", 0);
-    })
+    });
 }
 
 function openNav() {
@@ -41,9 +41,6 @@ function openNav() {
     closeIcon.style.display = 'block';
 }
 
-// I used chicked areas so I can check for winners later, but areasArray is for textContent and classList
-// for HTML elements, because textContent and classList can't be attached to objects of ChickedAreas Array
-// so I had to make an array only for HTML elements
 let chickedAreas = [...boardAreas];
 let areasArray = [...boardAreas];
 let completeAreasArray;
@@ -54,10 +51,6 @@ function closeNav() {
     closeIcon.style.display = 'none';
 }
 
-// Stop Function variable is important here, it helps me to check which step I should take in
-// the hard level which is more complex than any level
-// Step variable is to check if it's the first step for the bot or not
-// Num variable is to check if the number is even or odd to see who will play, the user or the bot, on the two players level
 let stopFun = false;
 let step = 1;
 let num = 0;
@@ -86,54 +79,26 @@ let choosingLevel = (function () {
                 console.log("choose weapon");
                 weaponsWindow.style.cssText = `display: flex`;
             }
-
             completeAreasArray.map(ele => {
                 return ele.style.cssText = `text-shadow: none`;
             });
-
             xScore.textContent = "0";
             oScore.textContent = '0';
-        })
+        });
     }
-})()
+})();
 
 openIcon.addEventListener('click', openNav);
 closeIcon.addEventListener('click', closeNav);
 
-let random = (num) => { return Math.floor(Math.random() * num) }
-              
-const winingArray = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 4, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [2, 4, 6]
-];
+let random = (num) => { return Math.floor(Math.random() * num); };
 
-function chasing(array, player) {
-    for (let i = 0; i < array.length; i++) {
-        if (stopFun === false) {
-            let result = array[i].filter(element => chickedAreas[element].content === player.weapon);
-            if (result.length === 2) {
-                let botMove = array[i].filter(element => chickedAreas[element].content === "")[0];
-                if (botMove !== undefined && chickedAreas[botMove].chicked === false) {
-                    chickedAreas[botMove] = BoardArea(botMove, bot.weapon, true);
-                    areasArray[botMove].textContent = bot.weapon;
-                    areasArray[botMove].classList.add(bot.weapon);
-                    stopFun = true;
-                }
-            }
-        }
-    }
-}
 function game() {
     for (let i = 0; i < boardAreas.length; i++) {
         chickedAreas[i] = BoardArea(i, "", false);
         areasArray[i].addEventListener('click', function () {
             area = boardAreas[i];
+            if (chickedAreas[i].chicked) return; // Prevent changing content of occupied areas
 
             if (choosenLevel === "twoplayers") {
                 if (chickedAreas[i].chicked === false) {
@@ -218,19 +183,38 @@ function game() {
     }
 }
 
+const winingArray = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 4, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [2, 4, 6]];
+
+function chasing(array, player) {
+    for (let i = 0; i < array.length; i++) {
+        if (stopFun === false) {
+            let result = array[i].filter(element => chickedAreas[Number(element)].content === player.weapon);
+            if (result.length === 2) {
+                let botMove = array[i].filter(element => chickedAreas[Number(element)].content === "");
+                if (botMove.length > 0 && chickedAreas[Number(botMove)].chicked === false) {
+                    chickedAreas[Number(botMove)] = BoardArea(Number(botMove), bot.weapon, true);
+                    boardAreas[Number(botMove)].textContent = bot.weapon;
+                    boardAreas[Number(botMove)].classList.add(bot.weapon);
+                    stopFun = true;
+                }
+            }
+        }
+    }
+}
+
 function chickForWinner() {
     completeAreasArray = [...boardAreas];
     for (let i = 0; i < winingArray.length; i++) {
-        let winner = winingArray[i].filter(element => chickedAreas[element].content === user.weapon);
+        let winner = winingArray[i].filter(element => chickedAreas[Number(element)].content === user.weapon);
         if (winner.length < 3) {
-            winner = winingArray[i].filter(element => chickedAreas[element].content === bot.weapon);
+            winner = winingArray[i].filter(element => chickedAreas[Number(element)].content === bot.weapon);
             if (winner.length < 3) {
                 stopFun = false;
             } else {
                 bot.score++;
                 oScore.textContent = bot.score;
                 chickedAreas.forEach(element => element.chicked = true);
-                winingArray[i].forEach(element => completeAreasArray[element].style.cssText = `
+                winingArray[i].forEach(element => completeAreasArray[Number(element)].style.cssText = `
                     animation: anim-popoutin 0.5s linear 0s 5 alternate;
                     text-shadow: 1px 1px 60px #fff
                 `);
@@ -245,7 +229,7 @@ function chickForWinner() {
             user.score++;
             xScore.textContent = user.score;
             chickedAreas.forEach(element => element.chicked = true);
-            winingArray[i].forEach(element => completeAreasArray[element].style.cssText = `
+            winingArray[i].forEach(element => completeAreasArray[Number(element)].style.cssText = `
                 animation: anim-popoutin 0.5s linear 0s 5 alternate;
                 text-shadow: 1px 1px 60px #fff
             `);
