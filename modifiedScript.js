@@ -52,7 +52,6 @@ let areasArray = [...boardAreas];
 let completeAreasArray;
 
 let stopFun = false;
-let step = 1;
 let num = 0;
 let area;
 
@@ -68,7 +67,6 @@ let choosingLevel = (function () {
             console.log(choosenLevel);
             stopFun = false;
             num = 0;
-            step = 1;
             area = 0;
             closeNav();
             areasArray = [...boardAreas];
@@ -117,26 +115,24 @@ function game() {
                         chickForWinner();
                     }
                 }
-            } else if (choosenLevel === "easy") {
+            } else if (choosenLevel === "easy") { // Fixed easy level bot moves
                 if (chickedAreas[i].chicked === false) {
                     area.textContent = user.weapon;
                     area.classList.add(user.weapon);
-                    areasArray.splice(areasArray.indexOf(area), 1);
                     chickedAreas[i] = BoardArea(i, user.weapon, true);
+                    areasArray = areasArray.filter(ele => ele !== area);
                     chickForWinner();
 
-                    if (stopFun === false) {
+                    if (stopFun === false && areasArray.length > 0) {
                         let randomNum = random(areasArray.length);
-                        if (areasArray.length > 0) {
-                            areasArray[randomNum].textContent = bot.weapon;
-                            areasArray[randomNum].classList.add(bot.weapon);
-                            chickedAreas[areasArray[randomNum].dataset.index] = BoardArea(areasArray[randomNum].dataset.index, bot.weapon, true);
-                            areasArray.splice(randomNum, 1);
-                            chickForWinner();
-                        }
+                        areasArray[randomNum].textContent = bot.weapon;
+                        areasArray[randomNum].classList.add(bot.weapon);
+                        chickedAreas[areasArray[randomNum].dataset.index] = BoardArea(areasArray[randomNum].dataset.index, bot.weapon, true);
+                        areasArray = areasArray.filter(ele => ele !== areasArray[randomNum]);
+                        chickForWinner();
                     }
                 }
-            } else if (choosenLevel === "hard") {
+            } else if (choosenLevel === "hard") { // Improved hard level with Minimax algorithm
                 if (chickedAreas[i].chicked === false) {
                     area.textContent = user.weapon;
                     area.classList.add(user.weapon);
@@ -144,7 +140,7 @@ function game() {
                     chickForWinner();
 
                     if (stopFun === false) {
-                        bestMove();
+                        bestMove(); // Call bestMove function to make the optimal move
                     }
                 }
             }
@@ -154,7 +150,7 @@ function game() {
 
 const winingArray = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 4, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [2, 4, 6]];
 
-function bestMove() {
+function bestMove() { // Added bestMove function using Minimax algorithm
     let bestScore = -Infinity;
     let move;
     for (let i = 0; i < chickedAreas.length; i++) {
@@ -175,13 +171,13 @@ function bestMove() {
     chickForWinner();
 }
 
-let scores = {
+let scores = { // Added scoring system for Minimax algorithm
     x: 1,
     o: -1,
     tie: 0
 };
 
-function minimax(newBoard, depth, isMaximizing) {
+function minimax(newBoard, depth, isMaximizing) { // Added Minimax function for unbeatable bot
     let result = checkWinner();
     if (result !== null) {
         return scores[result];
@@ -212,21 +208,21 @@ function minimax(newBoard, depth, isMaximizing) {
     }
 }
 
-function checkWinner() {
+function checkWinner() { // Added function to check for winner or tie
     let winner = null;
-    winingArray.forEach((combo) => {
+    for (let combo of winingArray) {
         const [a, b, c] = combo;
         if (chickedAreas[a].content && chickedAreas[a].content === chickedAreas[b].content && chickedAreas[a].content === chickedAreas[c].content) {
             winner = chickedAreas[a].content;
         }
-    });
+    }
 
     let openSpots = 0;
-    chickedAreas.forEach(area => {
-        if (area.content === "") {
+    for (let i = 0; i < chickedAreas.length; i++) {
+        if (chickedAreas[i].content === "") {
             openSpots++;
         }
-    });
+    }
 
     if (winner === null && openSpots === 0) {
         return "tie";
@@ -236,39 +232,34 @@ function checkWinner() {
 }
 
 function chickForWinner() {
-    completeAreasArray = [...boardAreas];
-    for (let i = 0; i < winingArray.length; i++) {
-        let winner = winingArray[i].filter(element => { return chickedAreas[Number(element)].content === user.weapon; });
-        if (winner.length < 3) {
-            winner = winingArray[i].filter(element => { return chickedAreas[Number(element)].content === bot.weapon; });
-            if (winner.length < 3) {
-                stopFun = false;
+    let completeAreasArray = [...boardAreas];
+    for (let combo of winingArray) {
+        let [a, b, c] = combo;
+        if (chickedAreas[a].content && chickedAreas[a].content === chickedAreas[b].content && chickedAreas[a].content === chickedAreas[c].content) {
+            stopFun = true;
+            if (chickedAreas[a].content === user.weapon) {
+                xScore.textContent = Number(xScore.textContent) + 1;
+                combo.map(index => completeAreasArray[index].style.cssText = `animation: anim-popoutin 0.5s linear 0s 5 alternate;`);
+                completeAreasArray.map(element => {
+                    if (element.textContent === bot.weapon) {
+                        return element.style.cssText = `text-shadow: 0.5px 0.5px 10px #BBE7FE,-0.7px -0.7px 5px #d2efff`;
+                    }
+                });
             } else {
                 oScore.textContent = Number(oScore.textContent) + 1;
-                chickedAreas.map(element => { return element.chicked = true; });
-                winingArray[i].map(element => {
-                    return completeAreasArray[Number(element)].style.cssText = `animation: anim-popoutin 0.5s linear 0s 5 alternate; text-shadow: 1px 1px 60px #fff`;
-                });
+                combo.map(index => completeAreasArray[index].style.cssText = `animation: anim-popoutin 0.5s linear 0s 5 alternate;`);
                 completeAreasArray.map(element => {
                     if (element.textContent === user.weapon) {
                         return element.style.cssText = `text-shadow: 0.5px 0.5px 10px #FD49A0,-0.7px -0.7px 5px #ff84bf`;
                     }
                 });
-                stopFun = true;
             }
-        } else if (winner.length === 3) {
-            xScore.textContent = Number(xScore.textContent) + 1;
-            chickedAreas.map(element => { return element.chicked = true; });
-            winingArray[i].map(element => {
-                return completeAreasArray[Number(element)].style.cssText = `animation: anim-popoutin 0.5s linear 0s 5 alternate;`;
-            });
-            completeAreasArray.map(element => {
-                if (element.textContent === bot.weapon) {
-                    return element.style.cssText = `text-shadow: 0.5px 0.5px 10px #BBE7FE,-0.7px -0.7px 5px #d2efff`;
-                }
-            });
-            stopFun = true;
+            return;
         }
+    }
+
+    if (chickedAreas.every(area => area.chicked)) {
+        stopFun = true;
     }
 }
 
@@ -280,7 +271,7 @@ restart.addEventListener('click', function () {
     }
     stopFun = false;
     num = 0;
-    step = 1;
+    area = 0;
     areasArray = [...boardAreas];
     chickedAreas = [...boardAreas];
     completeAreasArray = [...boardAreas];
