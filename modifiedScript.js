@@ -126,24 +126,22 @@ function game() {
                 }
             } else if (choosenLevel === "easy") {
                 if (chickedAreas[i].chicked === false) {
+                    // User move
                     area.textContent = user.weapon;
                     area.classList.add(user.weapon);
-                    areasArray.splice(areasArray.indexOf(area), 1);
                     chickedAreas[i] = BoardArea(i, user.weapon, true);
+                    areasArray = areasArray.filter(a => a !== area); // Remove the chosen area
                     chickForWinner();
 
-                    console.log(stopFun);
-                    // Bot turn
-                    if (stopFun === false) {
+                    // Bot move
+                    if (stopFun === false && areasArray.length > 0) {
                         let randomNum = random(areasArray.length);
-                        if (areasArray.length > 0) {
-                            console.log(randomNum);
-                            areasArray[randomNum].textContent = bot.weapon;
-                            areasArray[randomNum].classList.add(bot.weapon);
-                            chickedAreas[areasArray[randomNum].dataset.index] = BoardArea(areasArray[randomNum].dataset.index, bot.weapon, true);
-                            areasArray.splice(randomNum, 1);
-                            chickForWinner();
-                        }
+                        let botMoveArea = areasArray[randomNum];
+                        botMoveArea.textContent = bot.weapon;
+                        botMoveArea.classList.add(bot.weapon);
+                        chickedAreas[botMoveArea.dataset.index] = BoardArea(botMoveArea.dataset.index, bot.weapon, true);
+                        areasArray = areasArray.filter(a => a !== botMoveArea); // Remove the bot's chosen area
+                        chickForWinner();
                     }
                 }
             } else if (choosenLevel === "hard") {
@@ -193,34 +191,6 @@ function game() {
     }
 }
 
-const winingArray = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 4, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [2, 4, 6]
-];
-
-function chasing(array, player) {
-    for (let i = 0; i < array.length; i++) {
-        if (stopFun === false) {
-            let result = array[i].filter(element => chickedAreas[element].content === player.weapon);
-            if (result.length === 2) {
-                let botMove = array[i].filter(element => chickedAreas[element].content === "")[0];
-                if (botMove !== undefined && chickedAreas[botMove].chicked === false) {
-                    chickedAreas[botMove] = BoardArea(botMove, bot.weapon, true);
-                    areasArray[botMove].textContent = bot.weapon;
-                    areasArray[botMove].classList.add(bot.weapon);
-                    stopFun = true;
-                }
-            }
-        }
-    }
-}
-
 function chickForWinner() {
     completeAreasArray = [...boardAreas];
     for (let i = 0; i < winingArray.length; i++) {
@@ -230,7 +200,8 @@ function chickForWinner() {
             if (winner.length < 3) {
                 stopFun = false;
             } else {
-                oScore.textContent = Number(oScore.textContent) + 1;
+                bot.score++;
+                oScore.textContent = bot.score;
                 chickedAreas.forEach(element => element.chicked = true);
                 winingArray[i].forEach(element => completeAreasArray[element].style.cssText = `
                     animation: anim-popoutin 0.5s linear 0s 5 alternate;
@@ -244,7 +215,8 @@ function chickForWinner() {
                 stopFun = true;
             }
         } else if (winner.length === 3) {
-            xScore.textContent = Number(xScore.textContent) + 1;
+            user.score++;
+            xScore.textContent = user.score;
             chickedAreas.forEach(element => element.chicked = true);
             winingArray[i].forEach(element => completeAreasArray[element].style.cssText = `
                 animation: anim-popoutin 0.5s linear 0s 5 alternate;
@@ -278,3 +250,33 @@ restart.addEventListener('click', function () {
     }
     completeAreasArray.forEach(ele => ele.style.cssText = `text-shadow: none`);
 });
+
+
+const winingArray = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 4, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [2, 4, 6]
+];
+
+function chasing(array, player) {
+    for (let i = 0; i < array.length; i++) {
+        if (stopFun === false) {
+            let result = array[i].filter(element => chickedAreas[element].content === player.weapon);
+            if (result.length === 2) {
+                let botMove = array[i].filter(element => chickedAreas[element].content === "")[0];
+                if (botMove !== undefined && chickedAreas[botMove].chicked === false) {
+                    chickedAreas[botMove] = BoardArea(botMove, bot.weapon, true);
+                    areasArray[botMove].textContent = bot.weapon;
+                    areasArray[botMove].classList.add(bot.weapon);
+                    stopFun = true;
+                }
+            }
+        }
+    }
+}
+
