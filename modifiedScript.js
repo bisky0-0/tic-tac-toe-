@@ -126,6 +126,124 @@ function game() {
                 }
             } else if (choosenLevel === "easy") {
                 if (chickedAreas[i].chicked === false) {
+                    area.textContent = user.weapon;
+                    area.classList.add(user.weapon);
+                    areasArray.splice(areasArray.indexOf(area), 1);
+                    chickedAreas[i] = BoardArea(i, user.weapon, true);
+                    chickForWinner();
+
+                    console.log(stopFun);
+                    // Bot turn
+                    if (stopFun === false) {
+                        let randomNum = random(areasArray.length);
+                        if (areasArray.length > 0) {
+                            console.log(randomNum);
+                            areasArray[randomNum].textContent = bot.weapon;
+                            areasArray[randomNum].classList.add(bot.weapon);
+                            chickedAreas[areasArray[randomNum].dataset.index] = BoardArea(areasArray[randomNum].dataset.index, bot.weapon, true);
+                            areasArray.splice(randomNum, 1);
+                            chickForWinner();
+                        }
+                    }
+                }
+            } else if (choosenLevel === "hard") {
+                console.log(step);
+                if (chickedAreas[i].chicked === false) {
+                    area.textContent = user.weapon;
+                    area.classList.add(user.weapon);
+                    chickedAreas[i] = BoardArea(i, user.weapon, true);
+
+                    // Bot turn
+                    if (step === 1) {
+                        if (chickedAreas[4].chicked === false) {
+                            boardAreas[4].textContent = bot.weapon;
+                            chickedAreas[4] = BoardArea(4, bot.weapon, true);
+                            boardAreas[4].classList.add(bot.weapon);
+                        } else {
+                            boardAreas[0].textContent = bot.weapon;
+                            chickedAreas[0] = BoardArea(0, bot.weapon, true);
+                            boardAreas[0].classList.add(bot.weapon);
+                        }
+                        step = 0;
+                    } else {
+                        chickForWinner();
+                        chasing(winingArray, bot);
+
+                        if (stopFun === false) {
+                            chasing(winingArray, user);
+
+                            if (stopFun === false) {
+                                for (let ele of winingArray.flat()) {
+                                    if (chickedAreas[ele].chicked === false) {
+                                        chickedAreas[ele] = BoardArea(ele, bot.weapon, true);
+                                        boardAreas[ele].textContent = bot.weapon;
+                                        boardAreas[ele].classList.add(bot.weapon);
+                                        stopFun = true;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                        chickForWinner();
+                        stopFun = false;
+                    }
+                }
+            }
+        })
+    }
+}
+
+const winingArray = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 4, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [2, 4, 6]
+];
+
+function chasing(array, player) {
+    for (let i = 0; i < array.length; i++) {
+        if (stopFun === false) {
+            let result = array[i].filter(element => chickedAreas[element].content === player.weapon);
+            if (result.length === 2) {
+                let botMove = array[i].filter(element => chickedAreas[element].content === "")[0];
+                if (botMove !== undefined && chickedAreas[botMove].chicked === false) {
+                    chickedAreas[botMove] = BoardArea(botMove, bot.weapon, true);
+                    areasArray[botMove].textContent = bot.weapon;
+                    areasArray[botMove].classList.add(bot.weapon);
+                    stopFun = true;
+                }
+            }
+        }
+    }
+}
+function game() {
+    for (let i = 0; i < boardAreas.length; i++) {
+        chickedAreas[i] = BoardArea(i, "", false);
+        areasArray[i].addEventListener('click', function () {
+            area = boardAreas[i];
+
+            if (choosenLevel === "twoplayers") {
+                if (chickedAreas[i].chicked === false) {
+                    if (num % 2 === 0 || num === 0) {
+                        area.textContent = user.weapon;
+                        chickedAreas[i] = BoardArea(i, user.weapon, true);
+                        area.classList.add(user.weapon);
+                        num++;
+                        chickForWinner();
+                    } else {
+                        area.textContent = bot.weapon;
+                        chickedAreas[i] = BoardArea(i, bot.weapon, true);
+                        area.classList.add(bot.weapon);
+                        num++;
+                        chickForWinner();
+                    }
+                }
+            } else if (choosenLevel === "easy") {
+                if (chickedAreas[i].chicked === false) {
                     // User move
                     area.textContent = user.weapon;
                     area.classList.add(user.weapon);
@@ -187,7 +305,7 @@ function game() {
                     }
                 }
             }
-        })
+        });
     }
 }
 
@@ -250,22 +368,3 @@ restart.addEventListener('click', function () {
     }
     completeAreasArray.forEach(ele => ele.style.cssText = `text-shadow: none`);
 });
-
-
-function chasing(array, player) {
-    for (let i = 0; i < array.length; i++) {
-        if (stopFun === false) {
-            let result = array[i].filter(element => chickedAreas[element].content === player.weapon);
-            if (result.length === 2) {
-                let botMove = array[i].filter(element => chickedAreas[element].content === "")[0];
-                if (botMove !== undefined && chickedAreas[botMove].chicked === false) {
-                    chickedAreas[botMove] = BoardArea(botMove, bot.weapon, true);
-                    areasArray[botMove].textContent = bot.weapon;
-                    areasArray[botMove].classList.add(bot.weapon);
-                    stopFun = true;
-                }
-            }
-        }
-    }
-}
-
