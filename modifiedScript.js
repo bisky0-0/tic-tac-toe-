@@ -237,8 +237,8 @@ function chickForWinner() {
         let [a, b, c] = combo;
         if (chickedAreas[a].content && chickedAreas[a].content === chickedAreas[b].content && chickedAreas[a].content === chickedAreas[c].content) {
             stopFun = true;
-            if (chickedAreas[a].content === user.weapon) {
-                xScore.textContent = Number(xScore.textContent) + 1;
+            if (chickedAreas[a].content === bot.weapon) {
+                oScore.textContent = Number(oScore.textContent) + 1; // Ensure bot's score is incremented
                 combo.map(index => completeAreasArray[index].style.cssText = `animation: anim-popoutin 0.5s linear 0s 5 alternate;`);
                 completeAreasArray.map(element => {
                     if (element.textContent === bot.weapon) {
@@ -246,7 +246,7 @@ function chickForWinner() {
                     }
                 });
             } else {
-                oScore.textContent = Number(oScore.textContent) + 1;
+                xScore.textContent = Number(xScore.textContent) + 1;
                 combo.map(index => completeAreasArray[index].style.cssText = `animation: anim-popoutin 0.5s linear 0s 5 alternate;`);
                 completeAreasArray.map(element => {
                     if (element.textContent === user.weapon) {
