@@ -63,7 +63,7 @@ export const checkForWinner = (user, bot) => {
         stopFun = true;
         setTimeout(() => {
             alert(`It's a draw!`);
-        }, 1000)
+        }, 300)
     }
 };
 

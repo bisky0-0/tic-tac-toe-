@@ -1,5 +1,5 @@
 export let stopFun = false;
-export let choosenLevel;
+export let choosenLevel = 'easy';
 
 export const setStopFun = (value) => {
     stopFun = value;
