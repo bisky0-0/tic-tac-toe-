@@ -44,14 +44,27 @@ export const checkForWinner = (user, bot) => {
                 user.score++;
                 xScore.textContent = user.score;
                 styleWinnerElements(bot.weapon);
+                setTimeout(() => {
+                    alert('You Won!')
+                }, 2000)
             } else {
                 bot.score++;
                 oScore.textContent = bot.score;
                 styleWinnerElements(user.weapon);
+                setTimeout(() => {
+                    alert(`Bot Won!, you're a shame to humanity!`)
+                }, 2000)
             }
             chickedAreas.forEach(area => area.chicked = true);
         }
     });
+
+    if (!stopFun && chickedAreas.every(area => area.chicked)) {
+        stopFun = true;
+        setTimeout(() => {
+            alert(`It's a draw!`);
+        }, 2000)
+    }
 };
 
 const styleWinnerElements = (loserWeapon) => {
