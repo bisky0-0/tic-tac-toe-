@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tic tac toe</title>
+    <link rel="stylesheet" href="../src/css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC&family=Rubik+Vinyl&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/292ed01dd7.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header id="header">
+        <i class="fa-sharp fa-solid fa-xmark" id="close-icon"></i>
+        <i class="fa-solid fa-bars" id="nav-icon"></i>
+        <h1 id="h1">tic tac toe</h1>
+    </header>
+
+    <div id="first-window" class="bluer">
+        <div id="weapons">
+            <h2>choose your weapon</h2>
+            <div id="weapons-container">
+                <div class="weapon x" data-type="x">X</div>
+                <div class="weapon o" data-type="o">O</div>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <div id="game-container">
+            <nav id="nav">
+                <div class="level" data-type="easy">easy</div>
+                <div class="level" data-type="hard">hard</div>
+                <div class="level" data-type="twoplayers">two players</div>
+                <div class="level" data-type="chooseWeapon">choose you weapon</div>
+            </nav>
+            <div class="result"><span class="x larger">x</span>
+                <p id="x-scores">0</p>
+            </div>
+            <div id="board-container">
+                <div id="board">
+                    <div data-key="1" class="board-areas left "></div>
+                    <div data-key="2" class="board-areas"></div>
+                    <div data-key="3" class="board-areas"></div>
+                    <div data-key="4" class="board-areas left"></div>
+                    <div data-key="5" class="board-areas"></div>
+                    <div data-key="6" class="board-areas"></div>
+                    <div data-key="7" class="board-areas left last"></div>
+                    <div data-key="8" class="board-areas last"></div>
+                    <div data-key="9" class="board-areas last"></div>
+                </div>
+            </div>
+
+
+            <div class="result"><span class="o larger">o</span>
+                <p id="o-scores">0</p>
+            </div>
+        </div>
+        <button id="restart">new game</button>
+    </main>
+
+
+
+    <footer>
+        <p>built by <a href="https://github.com/bisky0-0">bisky kruger</a>
+            &copy;
+            <script>document.write(new Date().getFullYear());</script>
+        </p>
+    </footer>
+
+</body>
+<script src="main.js" type="module"></script>
+
+
+</html>
