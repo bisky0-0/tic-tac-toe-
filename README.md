@@ -73,5 +73,5 @@ Once the development server is running, you can open your browser and navigate t
     - The game will automatically check for a winner after each move. If a player wins or if it's a draw, an alert will notify the result.
 
 
-6. **Open a pull request**.
+
 
