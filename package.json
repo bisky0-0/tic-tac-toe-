@@ -1,0 +1,25 @@
+{
+  "name": "tic-tac-toe",
+  "version": "1.0.0",
+  "description": "styling weapons card 1- card 0vw, 0vh 2- when the user open the website it should flow the card to let them choose their weapon 2- then by clicking the weapon it chould be disapeared again 3- open the level nav to choose level 4- after choosing level the board should be appeared",
+  "main": "main.js",
+  "scripts": {
+    "build": "webpack --mode production",
+    "start": "webpack serve --mode development"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bisky0-0/tic-tac-toe-.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bisky0-0/tic-tac-toe-/issues"
+  },
+  "homepage": "https://github.com/bisky0-0/tic-tac-toe-#readme",
+  "devDependencies": {
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.0.4"
+  }
+}

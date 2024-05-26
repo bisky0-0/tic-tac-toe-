@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>tic tac toe</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../src/css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Amatic+SC&family=Rubik+Vinyl&display=swap" rel="stylesheet">
@@ -45,15 +45,15 @@
             </div>
             <div id="board-container">
                 <div id="board">
-                    <div class="board-areas left "></div>
-                    <div class="board-areas"></div>
-                    <div class="board-areas"></div>
-                    <div class="board-areas left"></div>
-                    <div class="board-areas"></div>
-                    <div class="board-areas"></div>
-                    <div class="board-areas left last"></div>
-                    <div class="board-areas last"></div>
-                    <div class="board-areas last"></div>
+                    <div data-key="1" class="board-areas left "></div>
+                    <div data-key="2" class="board-areas"></div>
+                    <div data-key="3" class="board-areas"></div>
+                    <div data-key="4" class="board-areas left"></div>
+                    <div data-key="5" class="board-areas"></div>
+                    <div data-key="6" class="board-areas"></div>
+                    <div data-key="7" class="board-areas left last"></div>
+                    <div data-key="8" class="board-areas last"></div>
+                    <div data-key="9" class="board-areas last"></div>
                 </div>
             </div>
 
@@ -75,7 +75,7 @@
     </footer>
 
 </body>
-<script src="modifiedScript.js"></script>
+<script src="main.js" type="module"></script>
 
 
 </html>

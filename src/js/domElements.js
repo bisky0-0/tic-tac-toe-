@@ -1,0 +1,11 @@
+export const weaponsCard = document.getElementById("weapons");
+export const weaponsWindow = document.getElementById("first-window");
+export const weapons = document.getElementsByClassName("weapon");
+export const openIcon = document.getElementById("nav-icon");
+export const closeIcon = document.getElementById("close-icon");
+export const navBar = document.getElementById("nav");
+export const levels = document.getElementsByClassName("level");
+export const boardAreas = document.getElementsByClassName("board-areas");
+export const oScore = document.getElementById("o-scores");
+export const xScore = document.getElementById("x-scores");
+export const restart = document.getElementById("restart");
